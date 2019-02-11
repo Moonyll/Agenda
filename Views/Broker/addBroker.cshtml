@@ -1,0 +1,37 @@
+﻿@model Agenda.Models.Broker
+@{
+ViewBag.Title = "addBroker";
+}
+@*FORMULAIRE*@
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <form class="form-horizontal" method="post">
+        <div class="form-group d-flex flex-column">
+            <label for="LastName">Nom :</label>
+            <input type="text" name="LastName" id="LastName" maxlength="50" placeholder="Nom" required value="@Request.Form["LastName"]" />
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group d-flex flex-column">
+            <label for="FirstName">Prénom :</label>
+            <input type="text" name="FirstName" id="FirstName" maxlength="50" placeholder="Prénom" required value="@Request.Form["FirstName"]" />
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group d-flex flex-column">
+            <label for="Mail">Addresse Mail :</label>
+            <input type="email" name="Mail" id="Mail" maxlength="100" placeholder="Addresse Mail" required value="@Request.Form["Mail"]" />
+            @Html.ValidationMessageFor(model => model.Mail, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group d-flex flex-column">
+            <label for="PhoneNumber">Numéro De Téléphone :</label>
+            <input type="tel" name="PhoneNumber" id="PhoneNumber" maxlength="10" placeholder="Numéro De Téléphone" required value="@Request.Form["PhoneNumber"]" />
+            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary" value="Ajouter">Ajouter Courtier</button>
+        </div>
+    </form>
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

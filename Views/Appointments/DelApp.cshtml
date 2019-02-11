@@ -1,0 +1,16 @@
+﻿@model Agenda.Models.Appointment
+@{
+    ViewBag.Title = "DelApp";
+}
+<h>Etes-vous sure de vouloir supprimer ce rendez-vous?</h>
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Retour", "AppointmentList")
+        </div>
+    }
+</div>
+

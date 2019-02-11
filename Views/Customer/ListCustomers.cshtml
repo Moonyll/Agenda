@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Agenda.Models.Customer>
+
+@{
+    ViewBag.Title = "ListCustomers";
+}
+<table class="table">
+    <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Adresse Mail</th>
+        <th>Numéro de Téléphone</th>
+        <th>Budget</th>
+        <th>Sujet</th>
+        <th>Détails</th>
+        <th>Suppression</th>
+    </tr>
+    @foreach (var client in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => client.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => client.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => client.Mail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => client.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => client.Budget)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => client.Subject)
+        </td>
+        <td>
+            @Html.ActionLink("Détails", "profilCustomer", new { id = client.idCustomer })
+        </td>
+        <td>
+            @Html.ActionLink("Suppression", "Suppr", new { id = client.idCustomer })
+        </td>
+    </tr>
+    }
+</table>
+
+

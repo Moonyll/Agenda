@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AgendaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Appointments">
+    <Key>
+      <PropertyRef Name="idAppointment" />
+    </Key>
+    <Property Name="idAppointment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateHour" Type="datetime" />
+    <Property Name="idBroker" Type="int" Nullable="false" />
+    <Property Name="idCustomer" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Brokers">
+    <Key>
+      <PropertyRef Name="idBroker" />
+    </Key>
+    <Property Name="idBroker" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="Mail" Type="varchar" MaxLength="100" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="idCustomer" />
+    </Key>
+    <Property Name="idCustomer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="Mail" Type="varchar" MaxLength="100" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="10" />
+    <Property Name="Budget" Type="int" />
+    <Property Name="Subject" Type="text" />
+  </EntityType>
+  <Association Name="Appointments_Brokers_FK">
+    <End Role="Brokers" Type="Self.Brokers" Multiplicity="1" />
+    <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Brokers">
+        <PropertyRef Name="idBroker" />
+      </Principal>
+      <Dependent Role="Appointments">
+        <PropertyRef Name="idBroker" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Appointments_Customers0_FK">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="idCustomer" />
+      </Principal>
+      <Dependent Role="Appointments">
+        <PropertyRef Name="idCustomer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AgendaModelStoreContainer">
+    <EntitySet Name="Appointments" EntityType="Self.Appointments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Brokers" EntityType="Self.Brokers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="Appointments_Brokers_FK" Association="Self.Appointments_Brokers_FK">
+      <End Role="Brokers" EntitySet="Brokers" />
+      <End Role="Appointments" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="Appointments_Customers0_FK" Association="Self.Appointments_Customers0_FK">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Appointments" EntitySet="Appointments" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

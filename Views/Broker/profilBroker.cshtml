@@ -1,0 +1,65 @@
+﻿@model Agenda.Models.Broker
+@{
+    ViewBag.Title = "profilBroker";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.idBroker)
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName,"Nom", htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName,"Prénom", htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Mail,"Adresse Mail", htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Mail, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Mail, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhoneNumber,"Numéro De Téléphone", htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Enregister" class="btn btn-primary text-light" />
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+

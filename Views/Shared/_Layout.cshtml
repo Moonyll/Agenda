@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Agenda</title>
+    <link href="~/assets/css/style.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    @*HAUT DE PAGE HEADER*@
+    <header>
+        <nav class="navbar navbar-expand-sm bg-info navbar-dark fixed-top">
+            <!--Bouton collapse-->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#coll">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!--Liens de la navbar-->
+            <div class="collapse navbar-collapse" id="coll">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">@Html.ActionLink("Accueil", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">@Html.ActionLink("Liste Courtiers", "ListBrokers", "Broker", new { area = "" }, new { @class = "nav-link" })</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">@Html.ActionLink("Liste Clients", "ListCustomers", "Customer", new { area = "" }, new { @class = "nav-link" })</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">@Html.ActionLink("Nouveau Courtier", "addBroker", "Broker", new { area = "" }, new { @class = "nav-link" })</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">@Html.ActionLink("Nouveau Client", "addCustomer", "Customer", new { area = "" }, new { @class = "nav-link" })</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">@Html.ActionLink("Liste Rendez-Vous", "AppointmentList", "Appointments", new { area = "" }, new { @class = "nav-link" })</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">@Html.ActionLink("Nouveau Rendez-Vous", "addAppointment", "Appointments", new { area = "" }, new { @class = "nav-link" })</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">@Html.ActionLink("Supprimer Rendez-Vous", "DelAppointment", "Appointments", new { area = "" }, new { @class = "nav-link" })</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    @*BODY*@
+    <div class="RB">@RenderBody()</div>
+    @*BAS DE PAGE FOOTER*@
+    <footer class="fixed-bottom bg-info">
+        @*<div class="flex">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/Broker/ListBrokers">Liste Courtiers</a></li>
+                <li class="breadcrumb-item"><a href="/Customer/ListCustomers">Liste Clients</a></li>
+                <li class="breadcrumb-item"><a href="/Broker/addBroker">Nouveau Courtier</a></li>
+                <li class="breadcrumb-item"><a href="/Customer/addCustomer">Nouveau Client</a></li>
+                <li class="breadcrumb-item"><a href="/Appointments/AppointmentList">Liste Rendez-Vous</a></li>
+                <li class="breadcrumb-item"><a href="/Appointments/addAppointment">Nouveau Rendez-Vous</a></li>
+                <li class="breadcrumb-item"><a href="/Appointments/DelAppointment">Supprimer Rendez-Vous</a></li>
+            </ul>
+        </div>*@
+        <div class="d-flex flex-row justify-content-center">
+            <div class="flex p-2 bg-info text-light" id="date"></div>
+            <div class="flex p-2 bg-info text-light" id="time"></div>
+        </div>
+    </footer>
+    @*SCRIPTS*@
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/umd/popper.min.js"></script>
+    <script src="~/assets/js/Time.js"></script>
+</body>
+</html>
