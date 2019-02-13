@@ -8,10 +8,20 @@ namespace Agenda.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
+        //// GET: Home
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
+        // GET: Appointments
         public ActionResult Index()
         {
-            return View("Index");
+            //Redirection vers la liste des clients
+            return RedirectToAction("AppointmentList", "Appointments");
         }
+
+
+
+
     }
 }

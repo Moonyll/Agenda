@@ -7,9 +7,11 @@
     <link href="~/assets/css/style.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
-<body>
+<body onload="startTime()">
     @*HAUT DE PAGE HEADER*@
     <header>
         <nav class="navbar navbar-expand-sm bg-info navbar-dark fixed-top">
@@ -19,7 +21,7 @@
             </button>
             <!--Liens de la navbar-->
             <div class="collapse navbar-collapse" id="coll">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav m-auto p-1">
                     <li class="nav-item active">
                         <a class="nav-link" href="#">@Html.ActionLink("Accueil", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</a>
                     </li>
@@ -41,9 +43,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">@Html.ActionLink("Nouveau Rendez-Vous", "addAppointment", "Appointments", new { area = "" }, new { @class = "nav-link" })</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">@Html.ActionLink("Supprimer Rendez-Vous", "DelAppointment", "Appointments", new { area = "" }, new { @class = "nav-link" })</a>
-                    </li>
                 </ul>
             </div>
         </nav>
@@ -53,19 +52,20 @@
     @*BAS DE PAGE FOOTER*@
     <footer class="fixed-bottom bg-info">
         @*<div class="flex">
-            <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/Broker/ListBrokers">Liste Courtiers</a></li>
-                <li class="breadcrumb-item"><a href="/Customer/ListCustomers">Liste Clients</a></li>
-                <li class="breadcrumb-item"><a href="/Broker/addBroker">Nouveau Courtier</a></li>
-                <li class="breadcrumb-item"><a href="/Customer/addCustomer">Nouveau Client</a></li>
-                <li class="breadcrumb-item"><a href="/Appointments/AppointmentList">Liste Rendez-Vous</a></li>
-                <li class="breadcrumb-item"><a href="/Appointments/addAppointment">Nouveau Rendez-Vous</a></li>
-                <li class="breadcrumb-item"><a href="/Appointments/DelAppointment">Supprimer Rendez-Vous</a></li>
-            </ul>
-        </div>*@
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/Broker/ListBrokers">Liste Courtiers</a></li>
+                    <li class="breadcrumb-item"><a href="/Customer/ListCustomers">Liste Clients</a></li>
+                    <li class="breadcrumb-item"><a href="/Broker/addBroker">Nouveau Courtier</a></li>
+                    <li class="breadcrumb-item"><a href="/Customer/addCustomer">Nouveau Client</a></li>
+                    <li class="breadcrumb-item"><a href="/Appointments/AppointmentList">Liste Rendez-Vous</a></li>
+                    <li class="breadcrumb-item"><a href="/Appointments/addAppointment">Nouveau Rendez-Vous</a></li>
+                    <li class="breadcrumb-item"><a href="/Appointments/DelAppointment">Supprimer Rendez-Vous</a></li>
+                </ul>
+            </div>*@
         <div class="d-flex flex-row justify-content-center">
             <div class="flex p-2 bg-info text-light" id="date"></div>
-            <div class="flex p-2 bg-info text-light" id="time"></div>
+            @*<div class="flex p-2 bg-info text-light" id="time"></div>*@
+            <div class="flex p-2 bg-info" id="txt"></div>
         </div>
     </footer>
     @*SCRIPTS*@
@@ -73,5 +73,6 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/umd/popper.min.js"></script>
     <script src="~/assets/js/Time.js"></script>
+    <script src="~/assets/js/Realtime.js"></script>
 </body>
 </html>

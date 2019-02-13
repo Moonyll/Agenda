@@ -118,12 +118,12 @@ namespace Agenda.Controllers
             return View(db.Brokers.ToList());
         }
         // Détails courtier
-        public ActionResult profilBroker(int id)
+        public ActionResult profilBroker(int id) // int? entier qui peux être nul !
         {
             Broker broker = db.Brokers.Find(id);
             if (broker == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Error"); // Mettre une page d'erreur
             }
             return View(broker);
         }
@@ -137,7 +137,7 @@ namespace Agenda.Controllers
             Broker brokerup = db.Brokers.Find(id);
             if (brokerup == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Error");
             }
             return View(brokerup);
         }

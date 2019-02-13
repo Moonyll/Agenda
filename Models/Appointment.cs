@@ -18,7 +18,9 @@ namespace Agenda.Models
         public Nullable<System.DateTime> DateHour { get; set; }
         public int idBroker { get; set; }
         public int idCustomer { get; set; }
-    
+        //public DateTime d;
+        //public DateTime t;
+
         public virtual Broker Broker { get; set; }
         public virtual Customer Customer { get; set; }
     }

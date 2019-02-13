@@ -30,7 +30,7 @@ namespace Agenda.Controllers
             Appointment appointment = db.Appointments.Find(id);
             if (appointment == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Error");
             }
             return View(appointment);
         }
@@ -52,7 +52,6 @@ namespace Agenda.Controllers
                 db.SaveChanges();
                 return RedirectToAction("AppointmentList");
             }
-
             ViewBag.idBroker = new SelectList(db.Brokers, "idBroker", "LastName", appointment.idBroker);
             ViewBag.idCustomer = new SelectList(db.Customers, "idCustomer", "LastName", appointment.idCustomer);
             return View(appointment);
@@ -67,7 +66,7 @@ namespace Agenda.Controllers
             Appointment appointment = db.Appointments.Find(id);
             if (appointment == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Error");
             }
             ViewBag.idBroker = new SelectList(db.Brokers, "idBroker", "LastName", appointment.idBroker);
             ViewBag.idCustomer = new SelectList(db.Customers, "idCustomer", "LastName", appointment.idCustomer);
@@ -98,7 +97,7 @@ namespace Agenda.Controllers
             Appointment delapp = db.Appointments.Find(id);
             if (delapp == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Error");
             }
             return View(delapp);
         }

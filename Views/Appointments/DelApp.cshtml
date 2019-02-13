@@ -2,14 +2,14 @@
 @{
     ViewBag.Title = "DelApp";
 }
-<h>Etes-vous sure de vouloir supprimer ce rendez-vous?</h>
 <div>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Retour", "AppointmentList")
+            <h>Etes-vous sure de vouloir supprimer ce rendez-vous?</h>
+            <input type="submit" class="btn btn-primary" value="Oui - Supprimer"/> |
+            <a class="btn btn-primary "href="~/Appointments/AppointmentList">Retour Liste</a>
         </div>
     }
 </div>

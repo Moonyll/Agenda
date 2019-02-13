@@ -78,3 +78,4 @@ C:\Users\Dell\Documents\Exos\Agenda\Agenda\Agenda\obj\Debug\Agenda.csproj.CoreCo
 C:\Users\Dell\Documents\Exos\Agenda\Agenda\Agenda\obj\Debug\Agenda.csproj.CopyComplete
 C:\Users\Dell\Documents\Exos\Agenda\Agenda\Agenda\obj\Debug\Agenda.dll
 C:\Users\Dell\Documents\Exos\Agenda\Agenda\Agenda\obj\Debug\Agenda.pdb
+C:\Users\Dell\Documents\Exos\Agenda\Agenda\Agenda\bin\fr\EntityFramework.SqlServer.resources.dll

@@ -34,7 +34,7 @@ ViewBag.Title = "addCustomer";
         </div>
         <div class="d-flex flex-column">
             <label for="Subject">Subject :</label>
-            <input type="text" name="Subject" id="Subject" placeholder="Subject" required value="@Request.Form["Subject"]" />
+            <textarea type="text" name="Subject" id="Subject" placeholder="Sujet" required value="@Request.Form["Subject"]"></textarea>
             @Html.ValidationMessageFor(model => model.Subject,"", new { @class = "text-danger" })
         </div>
         <div class="d-flex flex-column  mt-3">

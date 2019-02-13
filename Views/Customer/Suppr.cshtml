@@ -3,16 +3,15 @@
 @{
     ViewBag.Title = "Suppr";
 }
-
-<h>Etes-vous sûre de vouloir supprimer ce client ?</h>
 <div>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        <div class="form-actions no-color">
-            <input type="submit" value="Supprimer" class="btn btn-default" /> |
-            @Html.ActionLink("Retour", "ListCustomers")
-        </div>
+    <div class="form-actions no-color">
+        <h>Etes-vous sûre de vouloir supprimer ce client ?</h>
+        <input type="submit" class="btn btn-primary" value="Oui - Supprimer"  /> | 
+        <input type="submit" class="btn btn-primary" value="Non - Retour Liste" href="ListCustomers" ) />
+    </div>
     }
 </div>
 

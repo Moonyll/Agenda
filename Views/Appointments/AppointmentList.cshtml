@@ -3,36 +3,27 @@
 @{
     ViewBag.Title = "AppointmentList";
 }
-<table class="table">
-    <tr>
-        <th>
-            Courtier
-        </th>
-        <th>
-            Date Du Rendez-Vous
-        </th>
-        <th>
-           Client
-        </th>
-        <th>Supprimer Rendez-Vous</th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Broker.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateHour)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer.LastName)
-        </td>
-
-        <td>
-            @Html.ActionLink("Supprimer", "DelApp", new { id = item.idAppointment })@*mettre à jour*@
-        </td>
-    </tr>
-    }
-</table>
+<div class="d-flex flex-column mt-2">
+    <p class="mt-2"> <span class="bg-info border border-light p-1">Liste Des Rendez-Vous</span></p>
+    <table class="table">
+        <tr>
+            <th>Courtier</th>
+            <th>Client</th>
+            <th>Sujet</th>
+            <th>Date Du Rendez-Vous</th>
+            <th>Supprimer Rendez-Vous</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Broker.LastName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Customer.LastName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Customer.Subject)</td>
+                <td>@Html.DisplayFor(modelItem => item.DateHour)</td>
+                <td>@Html.ActionLink("Supprimer", "DelApp", new { id = item.idAppointment })@*mettre à jour*@</td>
+            </tr>
+        }
+    </table>
+    <iframe src="https://calendar.google.com/calendar/embed?src=1e7pbknr6sk33tt636ontc5qnk%40group.calendar.google.com&ctz=Europe%2FParis" class="mt-2 mb-2"></iframe>
+</div>

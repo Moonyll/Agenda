@@ -123,7 +123,7 @@ namespace Agenda.Controllers
             Customer customer = db.Customers.Find(id);
             if (customer == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Error");
             }
             return View(customer);
         }
@@ -137,7 +137,7 @@ namespace Agenda.Controllers
             Customer customerup = db.Customers.Find(id);
             if (customerup == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Error");
             }
             return View(customerup);
         }
@@ -233,7 +233,7 @@ namespace Agenda.Controllers
                 Customer customerdel = db.Customers.Find(id);
                 if (customerdel == null)
                 {
-                    return HttpNotFound();
+                    return RedirectToAction("Error");
                 }
                 return View(customerdel);
         }
