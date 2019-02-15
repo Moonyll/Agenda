@@ -30,7 +30,7 @@ namespace Agenda.Controllers
             Appointment appointment = db.Appointments.Find(id);
             if (appointment == null)
             {
-                return RedirectToAction("Error");
+                return RedirectToAction("Error", "Error");
             }
             return View(appointment);
         }
@@ -46,15 +46,26 @@ namespace Agenda.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult addAppointment([Bind(Include = "idAppointment,DateHour,idBroker,idCustomer")] Appointment appointment)
         {
-            if (ModelState.IsValid)
+            ViewBag.idBroker = new SelectList(db.Brokers, "idBroker", "LastName", appointment.idBroker);
+            ViewBag.idCustomer = new SelectList(db.Customers, "idCustomer", "LastName", appointment.idCustomer);
+            Appointment test = db.Appointments.Where(x => x.idBroker == appointment.idBroker).FirstOrDefault();
+            if (test == null) // Test si un courtier a déjà un rendez-vous !
             {
+                if (ModelState.IsValid)
+                {
                 db.Appointments.Add(appointment);
                 db.SaveChanges();
                 return RedirectToAction("AppointmentList");
+                }
+                else
+                {
+                return View(appointment);
+                }
             }
-            ViewBag.idBroker = new SelectList(db.Brokers, "idBroker", "LastName", appointment.idBroker);
-            ViewBag.idCustomer = new SelectList(db.Customers, "idCustomer", "LastName", appointment.idCustomer);
-            return View(appointment);
+            else
+            {
+            return View("Already");
+            }
         }
         // Edition I RDV
         public ActionResult Edit(int? id)
@@ -66,7 +77,7 @@ namespace Agenda.Controllers
             Appointment appointment = db.Appointments.Find(id);
             if (appointment == null)
             {
-                return RedirectToAction("Error");
+                return RedirectToAction("Error", "Error");
             }
             ViewBag.idBroker = new SelectList(db.Brokers, "idBroker", "LastName", appointment.idBroker);
             ViewBag.idCustomer = new SelectList(db.Customers, "idCustomer", "LastName", appointment.idCustomer);
@@ -97,7 +108,7 @@ namespace Agenda.Controllers
             Appointment delapp = db.Appointments.Find(id);
             if (delapp == null)
             {
-                return RedirectToAction("Error");
+                return RedirectToAction("Error", "Error");
             }
             return View(delapp);
         }

@@ -8,9 +8,8 @@ namespace Agenda.Controllers
 {
     public class ErrorController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Error()
         {
-            ViewBag.Title = "Error";
             return View();
         }
     }

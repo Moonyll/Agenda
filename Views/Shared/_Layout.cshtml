@@ -4,11 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Agenda</title>
-    <link href="~/assets/css/style.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="~/assets/css/style.css" rel="stylesheet" />
+    @*<link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />*@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body onload="startTime()">
@@ -25,22 +25,22 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="#">@Html.ActionLink("Accueil", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="#">@Html.ActionLink("Liste Courtiers", "ListBrokers", "Broker", new { area = "" }, new { @class = "nav-link" })</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="#">@Html.ActionLink("Liste Clients", "ListCustomers", "Customer", new { area = "" }, new { @class = "nav-link" })</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="#">@Html.ActionLink("Nouveau Courtier", "addBroker", "Broker", new { area = "" }, new { @class = "nav-link" })</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="#">@Html.ActionLink("Nouveau Client", "addCustomer", "Customer", new { area = "" }, new { @class = "nav-link" })</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="#">@Html.ActionLink("Liste Rendez-Vous", "AppointmentList", "Appointments", new { area = "" }, new { @class = "nav-link" })</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="#">@Html.ActionLink("Nouveau Rendez-Vous", "addAppointment", "Appointments", new { area = "" }, new { @class = "nav-link" })</a>
                     </li>
                 </ul>
@@ -70,6 +70,8 @@
     </footer>
     @*SCRIPTS*@
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/umd/popper.min.js"></script>
     <script src="~/assets/js/Time.js"></script>

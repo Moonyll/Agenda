@@ -1,0 +1,35 @@
+﻿@model Agenda.Models.Customer
+
+@{
+    ViewBag.Title = "Custadds";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <form class="align-content-center" method="post">
+
+        @Html.LabelFor(m => m.FirstName)
+        @Html.EditorFor(m => m.FirstName)
+
+        @Html.LabelFor(m => m.LastName)
+        @Html.EditorFor(m => m.LastName)
+
+        @Html.LabelFor(m => m.Mail)
+        @Html.EditorFor(m => m.Mail)
+
+        @Html.LabelFor(m => m.PhoneNumber)
+        @Html.EditorFor(m => m.PhoneNumber)
+
+        @Html.LabelFor(m => m.Budget)
+        @Html.EditorFor(m => m.Budget)
+
+        @Html.LabelFor(m => m.Subject)
+        @Html.EditorFor(m => m.Subject)
+
+        <input type="submit" value="Save" />
+    </form>
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

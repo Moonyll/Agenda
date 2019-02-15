@@ -99,7 +99,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\style.css" />
+    <Content Include="assets\js\Mail.js" />
+    <Content Include="assets\js\Pagination.js" />
     <Content Include="assets\js\Realtime.js" />
+    <Content Include="assets\js\Redirect.js" />
+    <Content Include="assets\js\Requete.js" />
     <Content Include="assets\js\Search.js" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
@@ -285,6 +289,10 @@
     <Content Include="Views\Appointments\AppointmentList.cshtml" />
     <Content Include="Views\Appointments\DelApp.cshtml" />
     <Content Include="Views\Error\Error.cshtml" />
+    <Content Include="Views\Appointments\Already.cshtml" />
+    <Content Include="Views\Customer\Custadds.cshtml" />
+    <Content Include="Views\Customer\Succes.cshtml" />
+    <Content Include="Views\Customer\Pagination.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

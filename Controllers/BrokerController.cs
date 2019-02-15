@@ -123,7 +123,7 @@ namespace Agenda.Controllers
             Broker broker = db.Brokers.Find(id);
             if (broker == null)
             {
-                return RedirectToAction("Error"); // Mettre une page d'erreur
+                return RedirectToAction("Error", "Error"); // Mettre une page d'erreur
             }
             return View(broker);
         }
@@ -137,7 +137,7 @@ namespace Agenda.Controllers
             Broker brokerup = db.Brokers.Find(id);
             if (brokerup == null)
             {
-                return RedirectToAction("Error");
+                return RedirectToAction("Error","Error");
             }
             return View(brokerup);
         }

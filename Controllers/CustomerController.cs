@@ -14,6 +14,11 @@ namespace Agenda.Controllers
     public class CustomerController : Controller
     {
         private AgendaEntities db = new AgendaEntities();
+        //Déclaration des regex
+        string regexName = @"^[A-Za-zéèàêâôûùïüç\-]+$";
+        string regexMail = @"[0-9a-zA-Z\.\-]+@[0-9a-zA-Z\.\-]+.[a-zA-Z]{2,4}";
+        string regexPhone = @"^[0][0-9]{9}";
+        string regexSubject = @"^[A-Za-zéèêëâäàçîïôö-&.,'\ ]+$";
         // Page ajouter client
         public ActionResult addCustomer()
         {
@@ -34,10 +39,10 @@ namespace Agenda.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult addCustomer([Bind(Include = "idCustomer,LastName,FirstName,Mail,PhoneNumber,Budget,Subject")] Customer customer)
         {
-            //Déclaration des regex
-            string regexName = @"^[A-Za-zéèàêâôûùïüç\-]+$";
-            string regexMail = @"[0-9a-zA-Z\.\-]+@[0-9a-zA-Z\.\-]+.[a-zA-Z]{2,4}";
-            string regexPhone = @"^[0][0-9]{9}";
+            ////Déclaration des regex
+            //string regexName = @"^[A-Za-zéèàêâôûùïüç\-]+$";
+            //string regexMail = @"[0-9a-zA-Z\.\-]+@[0-9a-zA-Z\.\-]+.[a-zA-Z]{2,4}";
+            //string regexPhone = @"^[0][0-9]{9}";
 
             //Vérification que le champ lastname n'est pas null ou vide
             if (!String.IsNullOrEmpty(customer.LastName)) //si le champ lastname n'est pas vide ou null on vérifie la validité de l'entrée
@@ -115,17 +120,23 @@ namespace Agenda.Controllers
         //Liste des clients
         public ActionResult ListCustomers()
         {
-            return View(db.Customers.ToList());
+        //return View(db.Customers.ToList());
+        //return View(db.Customers.SqlQuery("Select * from Customers").ToList<Customer>()); // Méthode Sql Query
+        var request = "SELECT [idCustomer], [LastName], [FirstName], [Mail], [PhoneNumber], [Budget], [Subject] " +
+                "FROM [dbo].[Customers] " +
+                "ORDER BY [LastName] ASC";
+        var listCustomers = db.Customers.SqlQuery(request);
+        return View(listCustomers);
         }
         // Détails client
-        public ActionResult profilCustomer(int id)
+        public ActionResult profilCustomer(int? id)
         {
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            Customer customer_detail = db.Customers.Find(id);
+            if (customer_detail == null || id == null) // Vérification de customer et id (url correcte) !!
             {
-                return RedirectToAction("Error");
+                return RedirectToAction("Error", "Error");
             }
-            return View(customer);
+            return View(customer_detail);
         }
         // Mise à jour client
         public ActionResult profileCustomer(int? id)
@@ -137,7 +148,7 @@ namespace Agenda.Controllers
             Customer customerup = db.Customers.Find(id);
             if (customerup == null)
             {
-                return RedirectToAction("Error");
+                return RedirectToAction("Error", "Error");
             }
             return View(customerup);
         }
@@ -145,10 +156,10 @@ namespace Agenda.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult profilCustomer([Bind(Include = "idCustomer,LastName,FirstName,Mail,PhoneNumber,Budget,Subject")] Customer customerup)
         {
-            //Déclaration des regex
-            string regexName = @"^[A-Za-zéèàêâôûùïüç\-]+$";
-            string regexMail = @"[0-9a-zA-Z\.\-]+@[0-9a-zA-Z\.\-]+.[a-zA-Z]{2,4}";
-            string regexPhone = @"^[0][0-9]{9}";
+            ////Déclaration des regex
+            //string regexName = @"^[A-Za-zéèàêâôûùïüç\-]+$";
+            //string regexMail = @"[0-9a-zA-Z\.\-]+@[0-9a-zA-Z\.\-]+.[a-zA-Z]{2,4}";
+            //string regexPhone = @"^[0][0-9]{9}";
 
             //Vérification que le champ lastname n'est pas null ou vide
             if (!String.IsNullOrEmpty(customerup.LastName)) //si le champ lastname n'est pas vide ou null on vérifie la validité de l'entrée
@@ -184,10 +195,16 @@ namespace Agenda.Controllers
             if (!String.IsNullOrEmpty(customerup.Mail))
             {
                 //Vérification de la validité de l'entrée
+                var alreadyUsed = db.Customers.Where(customer => customer.Mail == customerup.Mail).SingleOrDefault();
                 if (!Regex.IsMatch(customerup.Mail, regexMail))
                 {
                     //Message d'erreur
                     ModelState.AddModelError("Mail", "Veuillez écrire un mail valide");
+                }
+                else if (alreadyUsed != null)
+                {
+                    //Message d'erreur
+                    ModelState.AddModelError("Mail", "Veuillez écrire un mail non utilisé");
                 }
             }
             else
@@ -210,7 +227,25 @@ namespace Agenda.Controllers
                 //Message d'erreur
                 ModelState.AddModelError("PhoneNumber", "Veuillez renseigner un numéro de téléphone");
             }
-
+            if(customerup.Budget <= 0)
+            {
+                //Message d'erreur
+                ModelState.AddModelError("Budget", "Veuillez indiquer un budget valide");
+            }
+            if (!String.IsNullOrEmpty(customerup.Subject))
+            {
+                //Vérification de la validité de l'entrée
+                if (!Regex.IsMatch(customerup.Subject, regexSubject))
+                {
+                    //Message d'erreur
+                    ModelState.AddModelError("Subject", "Veuillez écrire un sujet valide");
+                }
+            }
+            else
+            {
+                //Message d'erreur
+                ModelState.AddModelError("Subject", "Veuillez écrire un sujet");
+            }
             //si il n'y a pas d'erreur
             if (ModelState.IsValid)
             {
@@ -223,7 +258,7 @@ namespace Agenda.Controllers
                 return View(customerup); //s'il y a des erreurs réaffichage du formulaire
             }
         }
-            // Suppression client
+        // Suppression client
         public ActionResult Suppr(int? id)
         {
                 if (id == null)
@@ -233,7 +268,7 @@ namespace Agenda.Controllers
                 Customer customerdel = db.Customers.Find(id);
                 if (customerdel == null)
                 {
-                    return RedirectToAction("Error");
+                    return RedirectToAction("Error", "Error");
                 }
                 return View(customerdel);
         }
@@ -254,6 +289,42 @@ namespace Agenda.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        //METHODE TRYUPDATEMODEL//
+        public ActionResult Custadds()
+        {
+            return View("Custadds");
+        }
+        public ActionResult Succes()
+        {
+            return View("Succes");
+        }
+
+        [HttpPost, ActionName("Custadds")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Custadd()
+        {
+            Customer custadd = new Customer();
+            TryUpdateModel(custadd);
+
+            if (ModelState.IsValid)
+            {
+                db.Customers.Add(custadd);
+                db.SaveChanges();
+                return RedirectToAction("Succes");
+            }
+            else
+            {
+                return View(custadd);
+            }
+        }
+        public ActionResult Pagination()
+        {
+            return View("Pagination");
+        }
+        public ActionResult Page()
+        {
+         return View(db.Customers.SqlQuery("Select * from Customers").ToList<Customer>());
         }
     }
 }
