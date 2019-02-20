@@ -1,24 +1,25 @@
 ﻿@model IEnumerable<Agenda.Models.Customer>
-
 @{
-
     ViewBag.Title = "Pagination";
+
 }
 <div class="d-flex flex-column mt-2">
-    <div id="listingTable"></div>
-    @*Pagination*@
-    <a href="javascript:prevPage()" id="btn_prev">Page Précédente</a>
-    <a href="javascript:nextPage()" id="btn_next">Page Suivante</a>
-    <div>Page N°<span id="page"></span></div>
+    @using (Html.BeginForm("getSelectedValue", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="d-flex flex-column mt-2 boder border-light" id="listing"> Listing Client</div>
+        <div class="mb-2 text-warning"> Sélection page de données : </div>
+        <div>
+            @Html.DropDownList("drp", new SelectList(ViewBag.listnumber, "Text", "Value"), "Selection Page", new { @onchange = "submitform();" })
+        </div>
+        @*<input type="submit" class="btn btn-primary border border-light" value="Valider N° Page" onchange="this.form.submit()" />*@
+    }
 </div>
-<script src="~/assets/js/Pagination.js"></script>
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-
-
-
-
-
+@*Script pour la validation automatique de la sélection*@
+<script>
+    function submitform() {
+        $('form').submit();
+    }
+</script>
 
 
 

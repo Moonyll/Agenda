@@ -79,3 +79,7 @@ C:\Users\Dell\Documents\Exos\Agenda\Agenda\Agenda\obj\Debug\Agenda.csproj.CopyCo
 C:\Users\Dell\Documents\Exos\Agenda\Agenda\Agenda\obj\Debug\Agenda.dll
 C:\Users\Dell\Documents\Exos\Agenda\Agenda\Agenda\obj\Debug\Agenda.pdb
 C:\Users\Dell\Documents\Exos\Agenda\Agenda\Agenda\bin\fr\EntityFramework.SqlServer.resources.dll
+C:\Users\Dell\Documents\Exos\Agenda\Agenda\Agenda\bin\PagedList.dll
+C:\Users\Dell\Documents\Exos\Agenda\Agenda\Agenda\bin\PagedList.Mvc.dll
+C:\Users\Dell\Documents\Exos\Agenda\Agenda\Agenda\bin\PagedList.xml
+C:\Users\Dell\Documents\Exos\Agenda\Agenda\Agenda\bin\PagedList.Mvc.xml

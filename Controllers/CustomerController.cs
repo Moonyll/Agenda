@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using Agenda.Models;
 using System.Text.RegularExpressions; // Pour utilisation des regex
+using PagedList;
 
 namespace Agenda.Controllers
 {
@@ -320,11 +321,48 @@ namespace Agenda.Controllers
         }
         public ActionResult Pagination()
         {
-            return View("Pagination");
+            var compte = db.Customers.Count();//Nombre total de clients dans la base de données
+            var nbcust = 5;// Nombre de clients par page
+            double value = compte / nbcust; // Total client / nb clients a afficher par page
+            var nbpage = Math.Ceiling(value) + 1; // Nombre de pages
+                                                  // Création de la liste des pages
+            var listnumber = new List<SelectListItem>();
+            for (var n = 1; n <= nbpage; n++)
+                listnumber.Add(new SelectListItem { Text = n.ToString(), Value = n.ToString() });
+            ViewBag.listnumber = listnumber;
+            return View();
         }
-        public ActionResult Page()
+        [HttpPost]
+        public ActionResult getSelectedValue(SelectListItem item)
         {
-         return View(db.Customers.SqlQuery("Select * from Customers").ToList<Customer>());
+            var selectedValue = Request.Form["drp"].ToString();//This will get selected value - Valeur Selectionée
+            int j = Convert.ToInt32(selectedValue); // Conversion de la valeur en integer
+            ViewBag.selectedValue = selectedValue;
+            ViewBag.j = j;
+            // Reqête sql pour lister les clients
+            var req = "SELECT [idCustomer], [LastName], [FirstName], [Mail], [PhoneNumber], [Budget], [Subject] " +
+                "FROM [dbo].[Customers] " +
+                "ORDER BY [LastName] ASC";
+            var list = db.Customers.SqlQuery(req);
+            // Fin de la Reqête sql pour lister les clients
+            // Déclaration des variables
+            var compte = db.Customers.Count();//Nombre total de clients dans la base de données
+            var nbcust = 5;// Nombre de clients par page
+            double value = compte / nbcust; // Total client / nb clients a afficher par page
+            var nbpage = Math.Ceiling(value) + 1; // Nombre de pages
+            // Création de la liste des pages
+            var listnumber = new List<SelectListItem>();
+            for (var n = 1; n <= nbpage; n++)
+                listnumber.Add(new SelectListItem { Text = n.ToString(), Value = n.ToString() });
+            ViewBag.listnumber = listnumber;
+            // Fin création liste
+            var t = j * nbcust;
+            var s = j * nbcust - nbcust;
+            return View("PagedList",list.Take(t).Skip(s));
+        }
+        public ActionResult PagedList()
+        {
+           return View("PagedList");
         }
     }
 }

@@ -14,8 +14,6 @@ header, footer, .navbar {
     position: relative;
     margin-top: 10px;
     display: flex;
-    /*background-color: #043871;*/
-    /*background-image: linear-gradient(#043871, #0099cc);*/
     font-family: 'Segoe UI';
     color: white;
     text-align: center;
@@ -139,47 +137,7 @@ a:active {
     color: #1aff1a;
 
 }
-@-webkit-keyframes Gradient {
-    0% {
-        background-position: 0% 50%
-    }
 
-    50% {
-        background-position: 100% 50%
-    }
-
-    100% {
-        background-position: 0% 50%
-    }
-}
-
-@-moz-keyframes Gradient {
-    0% {
-        background-position: 0% 50%
-    }
-
-    50% {
-        background-position: 100% 50%
-    }
-
-    100% {
-        background-position: 0% 50%
-    }
-}
-
-@keyframes Gradient {
-    0% {
-        background-position: 0% 50%
-    }
-
-    50% {
-        background-position: 100% 50%
-    }
-
-    100% {
-        background-position: 0% 50%
-    }
-}
 #image{
     position:relative;
     margin-top:10px;
@@ -187,3 +145,7 @@ a:active {
     height:50px;
 
    }
+#listing {
+    color: #4dff88;
+    font-weight:bold;
+}

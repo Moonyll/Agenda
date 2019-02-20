@@ -48,7 +48,7 @@ namespace Agenda.Controllers
         {
             ViewBag.idBroker = new SelectList(db.Brokers, "idBroker", "LastName", appointment.idBroker);
             ViewBag.idCustomer = new SelectList(db.Customers, "idCustomer", "LastName", appointment.idCustomer);
-            Appointment test = db.Appointments.Where(x => x.idBroker == appointment.idBroker).FirstOrDefault();
+            Appointment test = db.Appointments.Where(x => x.idBroker == appointment.idBroker && x.DateHour == appointment.DateHour).FirstOrDefault();
             if (test == null) // Test si un courtier a déjà un rendez-vous !
             {
                 if (ModelState.IsValid)

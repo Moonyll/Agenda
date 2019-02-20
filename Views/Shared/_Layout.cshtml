@@ -7,8 +7,6 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/assets/css/style.css" rel="stylesheet" />
-    @*<link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />*@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body onload="startTime()">
@@ -30,6 +28,9 @@
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="#">@Html.ActionLink("Liste Clients", "ListCustomers", "Customer", new { area = "" }, new { @class = "nav-link" })</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">@Html.ActionLink("Pagination Clients", "Pagination", "Customer", new { area = "" }, new { @class = "nav-link" })</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="#">@Html.ActionLink("Nouveau Courtier", "addBroker", "Broker", new { area = "" }, new { @class = "nav-link" })</a>

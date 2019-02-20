@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Agenda.Models.Customer>
+@{
+    ViewBag.Title = "PagedList";
+}
+<div class="d-flex flex-column mt-2">
+    <table class="table mt-2">
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Adresse Mail</th>
+            <th>Numéro de Téléphone</th>
+            <th>Budget</th>
+            <th>Sujet</th>
+            <th>Détails</th>
+            <th>Suppression</th>
+        </tr>
+        @foreach (var client in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => client.LastName)</td>
+                <td>@Html.DisplayFor(modelItem => client.FirstName)</td>
+                <td>@Html.DisplayFor(modelItem => client.Mail)</td>
+                <td>@Html.DisplayFor(modelItem => client.PhoneNumber)</td>
+                <td>@Html.DisplayFor(modelItem => client.Budget)</td>
+                <td>@Html.DisplayFor(modelItem => client.Subject)</td>
+                <td>@Html.ActionLink("Détails", "profilCustomer", new { id = client.idCustomer })</td>
+                <td>@Html.ActionLink("Suppression", "Suppr", new { id = client.idCustomer })</td>
+            </tr>
+        }
+    </table>
+    <a type="button" value="Retour" class="btn btn-light bg-info text-warning mt-2 m-auto" href="Pagination">Retour Pagination</a>
+    <input class="col-2 border border-primary mt-2 m-auto" id="client" name="client" type="text" placeholder="Chercher Client" onfocus="clearSearch()" />
+    <input class="col-2 mt-2 m-auto btn btn-primary border border-light" type="submit" value="Rechercher Client" onclick="searchCust()" />
+</div>
+<script src="~/assets/js/Search.js"></script>
