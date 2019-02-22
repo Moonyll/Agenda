@@ -35,11 +35,20 @@ namespace Agenda.Controllers
             return View(appointment);
         }
         // Création I RDV
-        public ActionResult addAppointment()
+        public ActionResult addAppointment(int? id)
         {
-            ViewBag.idBroker = new SelectList(db.Brokers, "idBroker", "LastName");
-            ViewBag.idCustomer = new SelectList(db.Customers, "idCustomer", "LastName");
-            return View();
+            if (id == null)
+            {
+                ViewBag.idBroker = new SelectList(db.Brokers, "idBroker", "LastName");
+                ViewBag.idCustomer = new SelectList(db.Customers, "idCustomer", "LastName");
+                return View();
+            }
+            else
+            {
+                ViewBag.idBroker = new SelectList(db.Brokers, "idBroker", "LastName",id);
+                ViewBag.idCustomer = new SelectList(db.Customers, "idCustomer", "LastName");
+                return View();
+            }
         }
         // Création II RDV
         [HttpPost]

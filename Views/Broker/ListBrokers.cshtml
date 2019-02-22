@@ -22,7 +22,7 @@
         <td>@Html.DisplayFor(modelItem => item.Mail)</td>
         <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
         <td>@Html.ActionLink("Détails", "profilBroker", new { id = item.idBroker })</td>
-        <td>@Html.ActionLink("Ajouter un Rdv", "addAppointment","Appointments")</td>
+        <td>@Html.ActionLink("Ajouter un Rdv", "addAppointment", "Appointments", new { id = item.idBroker}, null)</td>
     </tr>
     }
 </table>

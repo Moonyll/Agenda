@@ -647,6 +647,8 @@
     <Content Include="Views\Customer\Succes.cshtml" />
     <Content Include="Views\Customer\Pagination.cshtml" />
     <Content Include="Views\Customer\PagedList.cshtml" />
+    <Content Include="Views\Customer\test.cshtml" />
+    <Content Include="Views\Customer\Pager.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

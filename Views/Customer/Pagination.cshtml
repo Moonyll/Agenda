@@ -9,9 +9,9 @@
         <div class="d-flex flex-column mt-2 boder border-light" id="listing"> Listing Client</div>
         <div class="mb-2 text-warning"> Sélection page de données : </div>
         <div>
-            @Html.DropDownList("drp", new SelectList(ViewBag.listnumber, "Text", "Value"), "Selection Page", new { @onchange = "submitform();" })
+            @Html.DropDownList("drp", new SelectList(ViewBag.listnumber, "Text", "Value"), "Selection Page", new {@class = "btn btn-primary text-light border border-light dropdown-toggle", @onchange = "submitform();" })
         </div>
-        @*<input type="submit" class="btn btn-primary border border-light" value="Valider N° Page" onchange="this.form.submit()" />*@
+        @*<div>@Html.Partial("~/Views/Customer/Pager.cshtml")</div>*@
     }
 </div>
 @*Script pour la validation automatique de la sélection*@

@@ -19,7 +19,8 @@ namespace Agenda.Controllers
         string regexName = @"^[A-Za-zéèàêâôûùïüç\-]+$";
         string regexMail = @"[0-9a-zA-Z\.\-]+@[0-9a-zA-Z\.\-]+.[a-zA-Z]{2,4}";
         string regexPhone = @"^[0][0-9]{9}";
-        string regexSubject = @"^[A-Za-zéèêëâäàçîïôö-&.,'\ ]+$";
+        //string regexSubject = @"^[A-Za-zéèêëâäàçîïôö-&.,'\ ]+$";
+        string regexSubject = @"^[A-Za-zéèàêâôûùïüç\-]+$";
         // Page ajouter client
         public ActionResult addCustomer()
         {
@@ -335,34 +336,43 @@ namespace Agenda.Controllers
         [HttpPost]
         public ActionResult getSelectedValue(SelectListItem item)
         {
-            var selectedValue = Request.Form["drp"].ToString();//This will get selected value - Valeur Selectionée
-            int j = Convert.ToInt32(selectedValue); // Conversion de la valeur en integer
-            ViewBag.selectedValue = selectedValue;
-            ViewBag.j = j;
             // Reqête sql pour lister les clients
             var req = "SELECT [idCustomer], [LastName], [FirstName], [Mail], [PhoneNumber], [Budget], [Subject] " +
                 "FROM [dbo].[Customers] " +
                 "ORDER BY [LastName] ASC";
             var list = db.Customers.SqlQuery(req);
             // Fin de la Reqête sql pour lister les clients
+            //*//
             // Déclaration des variables
             var compte = db.Customers.Count();//Nombre total de clients dans la base de données
             var nbcust = 5;// Nombre de clients par page
             double value = compte / nbcust; // Total client / nb clients a afficher par page
             var nbpage = Math.Ceiling(value) + 1; // Nombre de pages
+            //*//
+            //Récupère la valeur selectionée dans la liste
+            var selectedValue = Request.Form["drp"].ToString();
+            int j = Convert.ToInt32(selectedValue); // Conversion de la valeur en integer
+            var t = j * nbcust;// Variable pour prendre t éléments de la base de données
+            var s = j * nbcust - nbcust;// Variable pour omettre s éléments de la base de données
+            //*//
             // Création de la liste des pages
             var listnumber = new List<SelectListItem>();
             for (var n = 1; n <= nbpage; n++)
                 listnumber.Add(new SelectListItem { Text = n.ToString(), Value = n.ToString() });
             ViewBag.listnumber = listnumber;
             // Fin création liste
-            var t = j * nbcust;
-            var s = j * nbcust - nbcust;
-            return View("PagedList",list.Take(t).Skip(s));
+            //*//
+            //Retour de la vue
+            return View("PagedList", list.Take(t).Skip(s));
         }
         public ActionResult PagedList()
         {
            return View("PagedList");
+        }
+        [ChildActionOnly] // Vue Partielle pour la pagination
+        public ActionResult Pager()
+        {
+          return PartialView("Pager");
         }
     }
 }

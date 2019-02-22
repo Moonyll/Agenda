@@ -2,14 +2,15 @@
     function searchCust()
     {
         var cust = $('#client').val();
-        $("td:contains('" + cust + "')").css('background', '#4dffa6');
+        $('.table td').parent().hide();
+        $("td:contains('"+ cust +"')").parent().show();
     } 
     function clearSearch()
     {
         var cust = $('#client').val();
         if (cust != '')
         {
-        $("td:contains('" + cust + "')").css("background", "none");
+        $('.table td').parent().show();
         } 
         $('#client').val('');
     } 

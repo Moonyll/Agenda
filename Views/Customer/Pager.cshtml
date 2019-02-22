@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Agenda.Models.Customer>
+@{
+    ViewBag.Title = "Pager";
+}
+
+<div>
+    @using (Html.BeginForm())
+    {
+        <ul class="d-flex flex-row mt-2">
+            @foreach (var item in ViewBag.listnumber)
+            {
+                <li class="ml-3 mr-3"><a href="PagedList">@item.Value</a></li>
+
+            }
+        </ul>
+    }
+</div>
